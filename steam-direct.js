@@ -6,10 +6,11 @@
  * 2. 删除“自动选择”策略组
  * 3. 删除“负载均衡”策略组
  * 4. 删除香港、日本、美国、新加坡、台湾、韩国等地区策略组
- * 5. AI 与 Gemini 分开
- * 6. 所有普通服务：手动选择 + 全部节点，默认“手动选择”
- *    - 特例：Gemini 策略组在“手动选择”后追加“AI”策略组选项
- * 7. FCM 默认“直连”
+ * 5. 彻底移除 GLOBAL 策略组
+ * 6. AI 与 Gemini 分开
+ * 7. 普通服务：手动选择 + 全部节点，默认“手动选择”
+ *    - 特例 1：Gemini 策略组在“手动选择”后追加“AI”策略组选项
+ *    - 特例 2：FCM 与 Emby 默认“直连”
  * 8. 支持直连的服务额外保留“直连”选项
  * 9. AdBlock 默认 REJECT
  * 10. 保留名称中含“备用”的节点
@@ -47,21 +48,21 @@ const highRateRegex =
   /(?:[*×xX✕✖⨉]\s*(?:[2-9]\d*|[1-9]\d+)(?:\.\d+)?)|(?:(?<![\d.])(?:[2-9]\d*|[1-9]\d+)(?:\.\d+)?\s*(?:倍|[*×xX✕✖⨉]))/u;
 
 const rules = [
-  //帝服 emby
+  // 帝服 emby
   'DOMAIN,emby.di0.uk,手动选择',
-  //茶百道 emby
+  // 茶百道 emby
   'DOMAIN,emby.chapanda.site,手动选择',
-  //BB emby
+  // BB emby
   'DOMAIN,emby.bbqwq.com,手动选择',
-  //步兵营地
+  // 步兵营地
   'DOMAIN,bb.emby.edu.kg,手动选择',
-  //折纸
+  // 折纸
   'DOMAIN,cdn.zhezhi.art,手动选择',
-  //龙宫
- 'DOMAIN,ccdragon.wybcs.work,手动选择',
-  //流光画廊 emby
+  // 龙宫
+  'DOMAIN,ccdragon.wybcs.work,手动选择',
+  // 流光画廊 emby
   'DOMAIN-SUFFIX,dqx99999.shop,手动选择',
- 
+
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
   // WebRTC / STUN 常用探测端口拦截
@@ -658,12 +659,12 @@ function main(config) {
 
     // ==========================
     // 默认策略
-    // FCM = 直连，其他 = 手动选择
+    // FCM / Emby = 直连，其他 = 手动选择
     // Gemini: 手动选择后面紧跟 AI 策略组选项
     // ==========================
 
     const defaultProxy =
-      service.name === 'FCM'
+      (service.name === 'FCM' || service.name === 'Emby')
         ? '直连'
         : '手动选择';
 
@@ -722,24 +723,6 @@ function main(config) {
     icon:
       'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China_Map.png',
   });
-
-  // =============================
-  // GLOBAL
-  // =============================
-
-  const globalGroup = {
-    ...selectBaseOption,
-    name: 'GLOBAL',
-    proxies: [
-      '手动选择',
-      ...functionalGroups
-        .map((group) => group.name)
-        .filter((name) => name !== '手动选择'),
-    ],
-    'default-selected': '手动选择',
-    icon:
-      'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png',
-  };
 
   // =============================
   // DNS
@@ -928,7 +911,6 @@ function main(config) {
   // =============================
 
   newConfig['proxy-groups'] = [
-    globalGroup,
     ...functionalGroups,
   ];
 
