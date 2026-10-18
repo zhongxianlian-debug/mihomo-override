@@ -73,8 +73,8 @@ const rules = [
   // 指定单个 IP 走直连
   'IP-CIDR,38.105.27.21/32,直连,no-resolve',
   'IP-CIDR,103.158.117.217/32,直连,no-resolve',
-  'IP-CIDR,154.23.240.161/32,直连,no-resolve',
-  'IP-CIDR,154.23.164.113/32,直连,no-resolve',
+  'IP-CIDR,154.26.237.39/32,直连,no-resolve',
+  'IP-CIDR,154.26.240.234/32,直连,no-resolve',
   'IP-CIDR,103.158.117.129/32,直连,no-resolve',
 
   'RULE-SET,private,直连',
