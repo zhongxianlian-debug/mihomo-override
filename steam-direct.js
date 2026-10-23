@@ -76,8 +76,6 @@ const rules = [
 
   // 指定单个 IP 走直连
   'IP-CIDR,38.105.27.21/32,直连,no-resolve',
-  'IP-CIDR,103.158.117.217/32,直连,no-resolve',
-  'IP-CIDR,154.26.237.39/32,直连,no-resolve',
   'IP-CIDR,154.26.240.234/32,直连,no-resolve',
   'IP-CIDR,103.158.117.129/32,直连,no-resolve',
 
@@ -94,8 +92,12 @@ const rules = [
   // 指定 Lumina 走直连
   'DOMAIN-SUFFIX,lumina00001.com,直连',
   'DOMAIN,lumina.lumina00001.com,直连',
+  //茶包emby
   'DOMAIN-SUFFIX,dpdns.org,直连',
+  //宸澄emby
   'DOMAIN-SUFFIX,wybcs.work,直连',
+  //茉莉emby
+  'DOMAIN-SUFFIX,mlhyy.top,直连',
 ];
 
 const ruleProviderCommonDomain = {
