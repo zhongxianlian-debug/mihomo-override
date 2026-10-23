@@ -1,7 +1,5 @@
 /**
- * Mihomo 配置覆写脚本（白天版 · 精简稳定版 + WebRTC 防泄漏 + 自定义域名/IP直连 + Steam 分流）
- *
- * 本文件当前内容照搬晚高峰版 steam-direct.js，可按白天时段自行调整。
+ * Mihomo 配置覆写脚本（精简稳定版 + WebRTC 防泄漏 + 自定义域名/IP直连 + Steam 分流）
  *
  * 设定：
  * 1. 删除“默认代理”策略组
@@ -53,15 +51,15 @@ const rules = [
   // 帝服 emby
   'DOMAIN,emby.di0.uk,手动选择',
   // 茶百道 emby
-  'DOMAIN,emby.chapanda.site,手动选择',
-  'DOMAIN,emby.teawaya.com,手动选择',
+  //'DOMAIN,emby.chapanda.site,手动选择',
+  //'DOMAIN,emby.teawaya.com,手动选择',
   // BB emby
   'DOMAIN,emby.bbqwq.com,手动选择',
   // 步兵营地
   'DOMAIN,bb.emby.edu.kg,手动选择',
   // 折纸
-  'DOMAIN,cdn.zhezhi.art,手动选择',
-  'DOMAIN,emby101.origamiart.uk,手动选择',
+  //'DOMAIN,cdn.zhezhi.art,手动选择',
+  //'DOMAIN,emby101.origamiart.uk,手动选择',
   // 龙宫
   'DOMAIN,dragon.wybcs.work,手动选择',
   // 流光画廊 emby
@@ -78,8 +76,11 @@ const rules = [
 
   // 指定单个 IP 走直连
   'IP-CIDR,38.105.27.21/32,直连,no-resolve',
+  'IP-CIDR,103.158.117.217/32,直连,no-resolve',
+  'IP-CIDR,154.26.237.39/32,直连,no-resolve',
   'IP-CIDR,154.26.240.234/32,直连,no-resolve',
   'IP-CIDR,103.158.117.129/32,直连,no-resolve',
+  'IP-CIDR,10.129.1.1/32,直连,no-resolve',
 
   'RULE-SET,private,直连',
   'RULE-SET,private_ip,直连,no-resolve',
@@ -98,6 +99,7 @@ const rules = [
   'DOMAIN-SUFFIX,dpdns.org,直连',
   //宸澄emby
   'DOMAIN-SUFFIX,wybcs.work,直连',
+  'DOMAIN-SUFFIX,ccmedia.top,直连',
   //茉莉emby
   'DOMAIN-SUFFIX,mlhyy.top,直连',
 ];
