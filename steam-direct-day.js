@@ -66,6 +66,8 @@ const rules = [
   'DOMAIN-SUFFIX,dqx99999.shop,手动选择',
   //MB闷豹
   'DOMAIN,emby.zhouzhou00.dpdns.org,手动选择',
+  //墨云阁
+  'DOMAIN,er8mm.mobaiemby.site,手动选择',
 
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
