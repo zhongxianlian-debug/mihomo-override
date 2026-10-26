@@ -68,6 +68,8 @@ const rules = [
   'DOMAIN,emby.zhouzhou00.dpdns.org,手动选择',
   //墨云阁
   'DOMAIN,er8mm.mobaiemby.site,手动选择',
+  //antigravity
+  'DOMAIN-KEYWORD,antigravity,Gemini',
 
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
