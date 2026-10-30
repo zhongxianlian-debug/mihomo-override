@@ -70,8 +70,6 @@ const rules = [
   'DOMAIN,emby.zhouzhou00.dpdns.org,手动选择',
   //墨云阁
   'DOMAIN,er8mm.mobaiemby.site,手动选择',
-  //antigravity
-  'DOMAIN-KEYWORD,antigravity,Gemini',
 
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
@@ -81,7 +79,6 @@ const rules = [
   'DOMAIN-KEYWORD,stun,REJECT',
 
   // 指定单个 IP 走直连
-  'IP-CIDR,38.105.27.21/32,直连,no-resolve',
   'IP-CIDR,154.26.240.234/32,直连,no-resolve',
   'IP-CIDR,103.158.117.129/32,直连,no-resolve',
 
@@ -98,6 +95,8 @@ const rules = [
   // 指定 Lumina 走直连
   'DOMAIN-SUFFIX,lumina00001.com,直连',
   'DOMAIN,lumina.lumina00001.com,直连',
+  //自建梯子
+  'DOMAIN-SUFFIX,zjw666.uk,直连',
   //茶包emby
   'DOMAIN-SUFFIX,dpdns.org,直连',
   //宸澄emby
