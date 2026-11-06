@@ -8,6 +8,7 @@ Mihomo（Clash Meta）配置覆写脚本仓库，按使用时段分为晚高峰�
 | --- | --- |
 | `steam-direct.js` | **晚高峰版**：WebRTC 防泄漏 + 自定义域名/IP 直连 + Steam 下载 CDN 直连分流 |
 | `steam-direct-day.js` | **白天版**：内容照搬晚高峰版，后续可单独调整白天策略 |
+| `steam-direct-day-newdns.js` | **白天新版 DNS 版**：白天版 + 新版 DNS 架构（全量 Fake-IP + direct-nameserver 回源解析 + 纯净黑名单） |
 
 ## 在客户端里怎么用
 
@@ -42,6 +43,20 @@ jsDelivr CDN（国内推荐）：
 https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day.js
 ```
 
+### 白天新版 DNS 版
+
+GitHub 官方 Raw：
+
+```
+https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct-day-newdns.js
+```
+
+jsDelivr CDN（国内推荐）：
+
+```
+https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day-newdns.js
+```
+
 国内访问不稳时可换用备用节点（把文件名换成对应版本的即可）：
 
 ```
@@ -59,11 +74,12 @@ https://gcore.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-dir
 - 本地拦截 WebRTC / STUN 探测（UDP 3478 / 5349 / 19302-19309 + `stun` 关键字）
 - 指定 `lumina00001.com`、`dpdns.org`、`wybcs.work` 及 5 个固定 IP 走直连
 - **Steam 分流**：下载 CDN（`steamcontent.com`、`steamserver.net`、`steampipe.akamaized.net`、`content.steamchina.com`）强制直连，商店/社区走 `Steam` 策略组
+- **新版 DNS**（`steam-direct-day-newdns.js`）：全量 Fake-IP + `direct-nameserver` 回源解析 + `geosite` 纯净黑名单（private / connectivity-check / NTP）
 
 ## 更新方式
 
 ```bash
-git add steam-direct.js steam-direct-day.js
+git add steam-direct.js steam-direct-day.js steam-direct-day-newdns.js
 git commit -m "update"
 git push
 ```
