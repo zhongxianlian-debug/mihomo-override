@@ -6,29 +6,15 @@ Mihomo（Clash Meta）配置覆写脚本仓库，按使用时段分为晚高峰�
 
 | 文件 | 说明 |
 | --- | --- |
-| `steam-direct.js` | **晚高峰版**：WebRTC 防泄漏 + 自定义域名/IP 直连 + Steam 下载 CDN 直连分流 |
 | `steam-direct-newdns.js` | **晚高峰新版 DNS 版**：晚高峰版 + 新版 DNS 架构（全量 Fake-IP + direct-nameserver 回源解析 + 纯净黑名单） |
-| `steam-direct-day.js` | **白天版**：内容照搬晚高峰版，后续可单独调整白天策略 |
 | `steam-direct-day-newdns.js` | **白天新版 DNS 版**：白天版 + 新版 DNS 架构（全量 Fake-IP + direct-nameserver 回源解析 + 纯净黑名单） |
+| `steam-direct.js` | **晚高峰版**：WebRTC 防泄漏 + 自定义域名/IP 直连 + Steam 下载 CDN 直连分流 |
+| `steam-direct-day.js` | **白天版**：内容照搬晚高峰版，后续可单独调整白天策略 |
 
 ## 在客户端里怎么用
 
 把下面任意一条链接填入客户端的「覆写 / Override / 配置脚本」输入框即可，晚高峰和白天各用各的链接。
 脚本内容更新后**链接不用换**，客户端重新拉取就会拿到最新版。
-
-### 晚高峰版
-
-GitHub 官方 Raw：
-
-```
-https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct.js
-```
-
-jsDelivr CDN（国内推荐）：
-
-```
-https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct.js
-```
 
 ### 晚高峰新版 DNS 版
 
@@ -44,20 +30,6 @@ jsDelivr CDN（国内推荐）：
 https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-newdns.js
 ```
 
-### 白天版
-
-GitHub 官方 Raw：
-
-```
-https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct-day.js
-```
-
-jsDelivr CDN（国内推荐）：
-
-```
-https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day.js
-```
-
 ### 白天新版 DNS 版
 
 GitHub 官方 Raw：
@@ -70,6 +42,34 @@ jsDelivr CDN（国内推荐）：
 
 ```
 https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day-newdns.js
+```
+
+### 晚高峰版
+
+GitHub 官方 Raw：
+
+```
+https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct.js
+```
+
+jsDelivr CDN（国内推荐）：
+
+```
+https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct.js
+```
+
+### 白天版
+
+GitHub 官方 Raw：
+
+```
+https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct-day.js
+```
+
+jsDelivr CDN（国内推荐）：
+
+```
+https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day.js
 ```
 
 国内访问不稳时可换用备用节点（把文件名换成对应版本的即可）：
