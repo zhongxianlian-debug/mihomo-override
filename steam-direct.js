@@ -104,6 +104,8 @@ const rules = [
   'DOMAIN-SUFFIX,ccmedia.top,直连',
   //茉莉emby
   'DOMAIN-SUFFIX,mlhyy.top,直连',
+  //小黑反代
+  'DOMAIN-SUFFIX,xiaoheixh.de,直连',
 ];
 
 const ruleProviderCommonDomain = {
