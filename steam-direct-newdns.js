@@ -108,7 +108,7 @@ const rules = [
   //小黑反代
   'DOMAIN-SUFFIX,xiaoheixh.de,直连',
   //折纸 CDN
-  'DOMAIN-SUFFIX,zhezhi.art,直连',
+  'DOMAIN-SUFFIX,zhezhi.art,手动选择',
 ];
 
 const ruleProviderCommonDomain = {
