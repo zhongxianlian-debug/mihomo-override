@@ -61,7 +61,7 @@ const rules = [
   // 步兵营地
   'DOMAIN,bb.emby.edu.kg,手动选择',
   // 折纸
-  //'DOMAIN,cdn.zhezhi.art,手动选择',
+  'DOMAIN,cdn.zhezhi.art,手动选择',
   'DOMAIN,emby101.origamiart.uk,手动选择',
   // 龙宫
   'DOMAIN,dragon.wybcs.work,手动选择',
@@ -107,8 +107,6 @@ const rules = [
   'DOMAIN-SUFFIX,mlhyy.top,直连',
   //小黑反代
   'DOMAIN-SUFFIX,xiaoheixh.de,直连',
-  //折纸 CDN
-  'DOMAIN-SUFFIX,zhezhi.art,手动选择',
 ];
 
 const ruleProviderCommonDomain = {
