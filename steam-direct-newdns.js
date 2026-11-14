@@ -72,6 +72,9 @@ const rules = [
   //墨云阁
   'DOMAIN,er8mm.mobaiemby.site,手动选择',
 
+  //111449
+  'DOMAIN-SUFFIX,111449.xyz,手动选择',
+
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
   // WebRTC / STUN 常用探测端口拦截
