@@ -58,7 +58,7 @@ const rules = [
   // BB emby
   'DOMAIN,emby.bbqwq.com,手动选择',
   // 步兵营地
-  'DOMAIN,bb.emby.edu.kg,手动选择',
+  'DOMAIN-SUFFIX,111449.xyz,手动选择',
   // 折纸
   'DOMAIN,cdn.zhezhi.art,手动选择',
   'DOMAIN,emby101.origamiart.uk,手动选择',
@@ -70,9 +70,6 @@ const rules = [
   'DOMAIN,emby.zhouzhou00.dpdns.org,手动选择',
   //墨云阁
   'DOMAIN,er8mm.mobaiemby.site,手动选择',
-
-  //111449
-  'DOMAIN-SUFFIX,111449.xyz,手动选择',
 
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
