@@ -109,6 +109,8 @@ const rules = [
   'DOMAIN-SUFFIX,mlhyy.top,直连',
   //小黑反代
   'DOMAIN-SUFFIX,xiaoheixh.de,直连',
+  //thxnk
+  'DOMAIN-SUFFIX,thxnk.cc,直连',
 ];
 
 const ruleProviderCommonDomain = {
