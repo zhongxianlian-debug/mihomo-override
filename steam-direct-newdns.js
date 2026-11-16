@@ -73,7 +73,7 @@ const rules = [
   'DOMAIN,er8mm.mobaiemby.site,手动选择',
   //大西瓜emby
   'DOMAIN-SUFFIX,yuntv.de,直连',
-  //vipdc
+  //这只猫emby
   'DOMAIN-SUFFIX,vipdc.covh.eu.org,手动选择',
 
   // 屏蔽海外 QUIC
