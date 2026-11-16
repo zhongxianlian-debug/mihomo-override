@@ -113,7 +113,7 @@ const rules = [
   'DOMAIN-SUFFIX,mlhyy.top,直连',
   //小黑反代
   'DOMAIN-SUFFIX,xiaoheixh.de,直连',
-  //thxnk
+  //chef emby
   'DOMAIN-SUFFIX,thxnk.cc,直连',
   //折纸 CDN
   'DOMAIN-SUFFIX,zhezhi.art,直连',
