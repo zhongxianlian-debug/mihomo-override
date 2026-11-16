@@ -73,7 +73,7 @@ const rules = [
   //大西瓜emby
   'DOMAIN-SUFFIX,yuntv.de,直连',
   //这只猫emby
-  'DOMAIN-SUFFIX,vipdc.covh.eu.org,手动选择',
+  'DOMAIN,vipdc.covh.eu.org,手动选择',
 
   // 屏蔽海外 QUIC
   'AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn_additional),(RULE-SET,cn_ip,no-resolve)))))),REJECT',
