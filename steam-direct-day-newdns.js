@@ -107,7 +107,7 @@ const rules = [
   //茶包emby
   'DOMAIN-SUFFIX,dpdns.org,直连',
   //宸澄emby
-  'DOMAIN-SUFFIX,wybcs.work,直连',
+  'DOMAIN-SUFFIX,wybcs.work,手动选择',
   'DOMAIN-SUFFIX,ccmedia.top,直连',
   //茉莉emby
   'DOMAIN-SUFFIX,mlhyy.top,直连',
