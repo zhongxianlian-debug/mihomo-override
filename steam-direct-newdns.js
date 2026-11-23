@@ -67,13 +67,13 @@ const rules = [
   'DOMAIN,dragon.wybcs.work,手动选择',
   // 流光画廊 emby
   'DOMAIN-SUFFIX,dqx99999.shop,手动选择',
-  //MB闷豹
+  // MB闷豹
   'DOMAIN,emby.zhouzhou00.dpdns.org,手动选择',
-  //墨云阁
+  // 墨云阁
   'DOMAIN,er8mm.mobaiemby.site,手动选择',
-  //大西瓜emby
+  // 大西瓜emby
   'DOMAIN-SUFFIX,yuntv.de,直连',
-  //这只猫emby
+  // 这只猫emby
   'DOMAIN,vipdc.covh.eu.org,手动选择',
 
   // 屏蔽海外 QUIC
@@ -100,18 +100,18 @@ const rules = [
   // 指定 Lumina 走直连
   'DOMAIN-SUFFIX,lumina00001.com,直连',
   'DOMAIN,lumina.lumina00001.com,直连',
-  //自建梯子
+  // 自建梯子
   'DOMAIN-SUFFIX,zjw666.uk,直连',
-  //茶包emby
+  // 茶包emby
   'DOMAIN-SUFFIX,dpdns.org,直连',
-  //宸澄emby
+  // 宸澄emby
   'DOMAIN-SUFFIX,wybcs.work,手动选择',
   'DOMAIN-SUFFIX,ccmedia.top,手动选择',
-  //茉莉emby
+  // 茉莉emby
   'DOMAIN-SUFFIX,mlhyy.top,直连',
-  //小黑反代
+  // 小黑反代
   'DOMAIN-SUFFIX,xiaoheixh.de,直连',
-  //chef emby
+  // chef emby
   'DOMAIN-SUFFIX,thxnk.cc,直连',
 ];
 
@@ -225,7 +225,7 @@ const baseRuleProviders = {
 const groupBaseOption = {
   interval: 600,
   timeout: 3000,
-  url: 'https://g.cn/generate_204',
+  url: 'https://www.google.com/generate_204',
   lazy: true,
   'max-failed-times': 3,
   'empty-fallback': 'REJECT',
@@ -580,27 +580,17 @@ function main(config) {
   // 过滤节点
   // =============================
 
-  const filteredProxies = (config.proxies || []).filter(
-    (proxy) => {
-      const type = String(
-        proxy.type ?? '',
-      ).toLowerCase();
+  const filteredProxies = (config.proxies || []).filter((proxy) => {
+    const type = String(proxy.type ?? '').toLowerCase();
+    const name = String(proxy.name ?? '');
 
-      const name = String(
-        proxy.name ?? '',
-      );
-
-      return (
-        type !== 'direct' &&
-        type !== 'reject' &&
-        !excludeFilter.test(name) &&
-        !(
-          excludeHighRateProxiesEnable &&
-          highRateRegex.test(name)
-        )
-      );
-    },
-  );
+    return (
+      type !== 'direct' &&
+      type !== 'reject' &&
+      !excludeFilter.test(name) &&
+      !(excludeHighRateProxiesEnable && highRateRegex.test(name))
+    );
+  });
 
   if (!filteredProxies.length) {
     throw new Error(
@@ -608,20 +598,10 @@ function main(config) {
     );
   }
 
-  const allProxyNames =
-    filteredProxies.map(
-      (proxy) => proxy.name,
-    );
-
+  const allProxyNames = filteredProxies.map((proxy) => proxy.name);
   const functionalGroups = [];
-
-  const finalRules = [
-    ...rules,
-  ];
-
-  const finalRuleProviders = {
-    ...baseRuleProviders,
-  };
+  const finalRules = [...rules];
+  const finalRuleProviders = { ...baseRuleProviders };
 
   // =============================
   // 总手动选择
@@ -630,9 +610,7 @@ function main(config) {
   functionalGroups.push({
     ...selectBaseOption,
     name: '手动选择',
-    proxies: [
-      ...allProxyNames,
-    ],
+    proxies: [...allProxyNames],
     icon:
       'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Rocket.png',
   });
@@ -642,22 +620,12 @@ function main(config) {
   // =============================
 
   for (const service of serviceConfigs) {
-    if (
-      !ruleOptionsEnable[
-        service.name
-      ]
-    ) {
+    if (!ruleOptionsEnable[service.name]) {
       continue;
     }
 
-    finalRules.push(
-      ...service.rules,
-    );
-
-    Object.assign(
-      finalRuleProviders,
-      service.providers || {},
-    );
+    finalRules.push(...service.rules);
+    Object.assign(finalRuleProviders, service.providers || {});
 
     // ==========================
     // AdBlock
@@ -668,11 +636,7 @@ function main(config) {
         ...selectBaseOption,
         name: service.name,
         icon: service.icon,
-        proxies: [
-          'REJECT',
-          'REJECT-DROP',
-          'PASS',
-        ],
+        proxies: ['REJECT', 'REJECT-DROP', 'PASS'],
         'default-selected': 'REJECT',
       });
       continue;
@@ -685,9 +649,7 @@ function main(config) {
     // ==========================
 
     const defaultProxy =
-      (service.name === 'FCM' || service.name === 'Emby')
-        ? '直连'
-        : '手动选择';
+      service.name === 'FCM' || service.name === 'Emby' ? '直连' : '手动选择';
 
     const commonProxies = [
       '手动选择',
@@ -698,9 +660,7 @@ function main(config) {
 
     const serviceProxies = [
       defaultProxy,
-      ...commonProxies.filter(
-        (name) => name !== defaultProxy,
-      ),
+      ...commonProxies.filter((name) => name !== defaultProxy),
     ];
 
     functionalGroups.push({
@@ -719,11 +679,7 @@ function main(config) {
   functionalGroups.push({
     ...selectBaseOption,
     name: '漏网之鱼',
-    proxies: [
-      '手动选择',
-      ...allProxyNames,
-      '直连',
-    ],
+    proxies: ['手动选择', ...allProxyNames, '直连'],
     'default-selected': '手动选择',
     icon:
       'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Stack.png',
@@ -776,7 +732,7 @@ function main(config) {
   newConfig.dns = {
     enable: true,
     listen: ':53',
-    ipv6: true,
+    ipv6: false,
     'use-hosts': true,
     'cache-algorithm': 'arc',
     'use-system-hosts': true,
@@ -788,10 +744,7 @@ function main(config) {
       'geosite:connectivity-check',
       'geosite:category-ntp',
     ],
-    'default-nameserver': [
-      '223.5.5.5',
-      '119.29.29.29',
-    ],
+    'default-nameserver': ['223.5.5.5', '119.29.29.29'],
     'proxy-server-nameserver': [
       'https://doh.pub/dns-query',
       'https://dns.alidns.com/dns-query',
@@ -816,7 +769,7 @@ function main(config) {
   };
 
   // =============================
-  // Hosts
+  // Hosts（支持精准域名与 +. / *. 泛域名匹配）
   // =============================
 
   const proxyDomains = new Set(
@@ -824,13 +777,37 @@ function main(config) {
       .filter((proxy) => typeof proxy.server === 'string')
       .map((proxy) => proxy.server.toLowerCase()),
   );
+  const proxyDomainList = [...proxyDomains];
 
   const originalHosts = config.hosts || {};
   const proxyHosts = {};
 
   for (const [host, value] of Object.entries(originalHosts)) {
-    if (proxyDomains.has(host.toLowerCase())) {
+    const lowerHost = host.toLowerCase();
+    if (proxyDomains.has(lowerHost)) {
       proxyHosts[host] = value;
+      continue;
+    }
+    if (lowerHost.startsWith('+.')) {
+      const baseDomain = lowerHost.slice(2);
+      if (
+        proxyDomainList.some(
+          (d) => d === baseDomain || d.endsWith('.' + baseDomain),
+        )
+      ) {
+        proxyHosts[host] = value;
+      }
+    } else if (lowerHost.startsWith('*.')) {
+      const baseDomain = lowerHost.slice(2);
+      if (
+        proxyDomainList.some((d) => {
+          if (!d.endsWith('.' + baseDomain)) return false;
+          const prefix = d.slice(0, -(baseDomain.length + 1));
+          return prefix.length > 0 && !prefix.includes('.');
+        })
+      ) {
+        proxyHosts[host] = value;
+      }
     }
   }
 
@@ -851,7 +828,7 @@ function main(config) {
   // =============================
 
   newConfig['allow-lan'] = true;
-  newConfig.ipv6 = true;
+  newConfig.ipv6 = false;
   newConfig.mode = 'rule';
   newConfig['log-level'] = 'info';
   newConfig['bind-address'] = '*';
@@ -891,12 +868,8 @@ function main(config) {
     stack: 'system',
     'auto-route': true,
     'strict-route': true,
-    'auto-redirect': true,
     'auto-detect-interface': true,
-    'dns-hijack': [
-      'any:53',
-      'tcp://any:53',
-    ],
+    'dns-hijack': ['any:53', 'tcp://any:53'],
   };
 
   // =============================
@@ -925,9 +898,7 @@ function main(config) {
   // 策略组
   // =============================
 
-  newConfig['proxy-groups'] = [
-    ...functionalGroups,
-  ];
+  newConfig['proxy-groups'] = [...functionalGroups];
 
   // =============================
   // Rule Providers
