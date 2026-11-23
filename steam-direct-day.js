@@ -105,8 +105,6 @@ const rules = [
   'DOMAIN,lumina.lumina00001.com,直连',
   //自建梯子
   'DOMAIN-SUFFIX,zjw666.uk,直连',
-  //茶包emby
-  'DOMAIN-SUFFIX,dpdns.org,直连',
   //宸澄emby
   'DOMAIN-SUFFIX,wybcs.work,手动选择',
   'DOMAIN-SUFFIX,ccmedia.top,直连',

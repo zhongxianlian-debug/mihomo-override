@@ -108,8 +108,6 @@ const rules = [
   'DOMAIN,lumina.lumina00001.com,直连',
   // 自建梯子
   'DOMAIN-SUFFIX,zjw666.uk,手动选择',
-  // 茶包emby（如后续遇到其他 dpdns.org 子域名需走代理，可改为具体完整域名）
-  'DOMAIN-SUFFIX,dpdns.org,直连',
   // 宸澄emby
   'DOMAIN-SUFFIX,wybcs.work,手动选择',
   'DOMAIN-SUFFIX,ccmedia.top,直连',

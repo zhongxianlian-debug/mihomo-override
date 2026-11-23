@@ -117,7 +117,7 @@ https://gcore.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-dir
 - AI 与 Gemini 策略组分开；FCM 默认直连
 - AdBlock 默认 REJECT；保留名称含「备用」的节点
 - 本地拦截 WebRTC / STUN 探测（UDP 3478 / 5349 / 19302-19309 + `stun` 关键字）
-- 指定 `lumina00001.com`、`dpdns.org` 及固定 IP 走直连；`wybcs.work` 全部版本走「手动选择」
+- 指定 `lumina00001.com` 及固定 IP 走直连；`wybcs.work` 全部版本走「手动选择」
 - **Steam 分流**：下载 CDN（`steamcontent.com`、`steamserver.net`、`steampipe.akamaized.net`、`content.steamchina.com`）强制直连，商店/社区走 `Steam` 策略组
 - **新版 DNS**（`steam-direct-newdns.js` / `steam-direct-day-newdns.js`）：全量 Fake-IP + `direct-nameserver` 回源解析 + `geosite` 纯净黑名单（private / connectivity-check / NTP）
 - **无自动测速版**（`steam-direct-newdns-no-speedtest.js` / `steam-direct-day-newdns-no-speedtest.js`）：策略组不设置 `interval` / `timeout` / `url` / `lazy`，不再自动做健康检查；需要测速时可在面板手动触发
