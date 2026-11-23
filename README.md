@@ -1,6 +1,6 @@
 # mihomo-override
 
-Mihomo（Clash Meta）配置覆写脚本仓库，按使用时段分为晚高峰版和白天版。
+Mihomo（Clash Meta）配置覆写脚本仓库，按使用时段分为晚高峰版和白天版，并提供关闭自动测速的变体。
 
 ## 文件
 
@@ -8,12 +8,14 @@ Mihomo（Clash Meta）配置覆写脚本仓库，按使用时段分为晚高峰�
 | --- | --- |
 | `steam-direct-newdns.js` | **晚高峰新版 DNS 版**：晚高峰版 + 新版 DNS 架构（全量 Fake-IP + direct-nameserver 回源解析 + 纯净黑名单） |
 | `steam-direct-day-newdns.js` | **白天新版 DNS 版**：白天版 + 新版 DNS 架构（全量 Fake-IP + direct-nameserver 回源解析 + 纯净黑名单） |
+| `steam-direct-newdns-no-speedtest.js` | **晚高峰新版 DNS · 无自动测速版**：同晚高峰新版 DNS，但策略组不做自动健康检查/测速 |
+| `steam-direct-day-newdns-no-speedtest.js` | **白天新版 DNS · 无自动测速版**：同白天新版 DNS，但策略组不做自动健康检查/测速 |
 | `steam-direct.js` | **晚高峰版**：WebRTC 防泄漏 + 自定义域名/IP 直连 + Steam 下载 CDN 直连分流 |
 | `steam-direct-day.js` | **白天版**：内容照搬晚高峰版，后续可单独调整白天策略 |
 
 ## 在客户端里怎么用
 
-把下面任意一条链接填入客户端的「覆写 / Override / 配置脚本」输入框即可，晚高峰和白天各用各的链接。
+把下面任意一条链接填入客户端的「覆写 / Override / 配置脚本」输入框即可；晚高峰和白天各用各的链接，并按需选择带自动测速或「无自动测速」版本。
 脚本内容更新后**链接不用换**，客户端重新拉取就会拿到最新版。
 
 ### 晚高峰新版 DNS 版
@@ -42,6 +44,34 @@ jsDelivr CDN（国内推荐）：
 
 ```
 https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day-newdns.js
+```
+
+### 晚高峰新版 DNS 无自动测速版
+
+GitHub 官方 Raw：
+
+```
+https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct-newdns-no-speedtest.js
+```
+
+jsDelivr CDN（国内推荐）：
+
+```
+https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-newdns-no-speedtest.js
+```
+
+### 白天新版 DNS 无自动测速版
+
+GitHub 官方 Raw：
+
+```
+https://raw.githubusercontent.com/zhongxianlian-debug/mihomo-override/main/steam-direct-day-newdns-no-speedtest.js
+```
+
+jsDelivr CDN（国内推荐）：
+
+```
+https://cdn.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-direct-day-newdns-no-speedtest.js
 ```
 
 ### 晚高峰版
@@ -90,11 +120,12 @@ https://gcore.jsdelivr.net/gh/zhongxianlian-debug/mihomo-override@main/steam-dir
 - 指定 `lumina00001.com`、`dpdns.org` 及固定 IP 走直连；`wybcs.work` 全部版本走「手动选择」
 - **Steam 分流**：下载 CDN（`steamcontent.com`、`steamserver.net`、`steampipe.akamaized.net`、`content.steamchina.com`）强制直连，商店/社区走 `Steam` 策略组
 - **新版 DNS**（`steam-direct-newdns.js` / `steam-direct-day-newdns.js`）：全量 Fake-IP + `direct-nameserver` 回源解析 + `geosite` 纯净黑名单（private / connectivity-check / NTP）
+- **无自动测速版**（`steam-direct-newdns-no-speedtest.js` / `steam-direct-day-newdns-no-speedtest.js`）：策略组不设置 `interval` / `timeout` / `url` / `lazy`，不再自动做健康检查；需要测速时可在面板手动触发
 
 ## 更新方式
 
 ```bash
-git add steam-direct.js steam-direct-newdns.js steam-direct-day.js steam-direct-day-newdns.js
+git add *.js README.md
 git commit -m "update"
 git push
 ```
